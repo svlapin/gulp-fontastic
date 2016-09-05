@@ -29,6 +29,13 @@ module.exports = function(opt) {
 
             var content = response.body;
             var results = content.match(/([0-9]+).eot/);
+             if (!results) {
+                console.log('Error: ', error);
+                console.log('Status code: ', response.statusCode);
+                console.log('Headers:')
+                console.log(JSON.stringify(response.headers, null, 2));
+                console.log(response.body);
+            }
             var hash = results[1];
 
             var url = 'https://file.myfontastic.com/'+ options.key + '/fonts/' + hash;
